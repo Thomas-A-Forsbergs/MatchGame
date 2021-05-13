@@ -23,6 +23,37 @@ namespace MatchGame
         public MainWindow()
         {
             InitializeComponent();
+            SetUpGame();
+        }
+
+        private void SetUpGame()
+        {
+            List<string> moonEmoji = new List<string>()
+            {
+                "🌕","🌕",
+                "🌔","🌔",
+                "🌓","🌓",
+                "🌒","🌒",
+                "🌑","🌑",
+                "🌗","🌗",
+                "🌖","🌖",
+                "🌖","🌖",
+            };
+
+            Random random = new Random();
+
+            foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
+            {
+                int index = random.Next(moonEmoji.Count);
+                string nextEmoji = moonEmoji[index];
+                textBlock.Text = nextEmoji;
+                moonEmoji.RemoveAt(index);
+            }
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
